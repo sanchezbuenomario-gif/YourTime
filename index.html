@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="public/styles.css" />
   </head>
   <body class="antialiased text-slate-800 bg-white">
-    <!-- Navbar z-[5000] para estar sobre el mapa  -->
-    <header class="bg-white border-b z-[5000] relative">
+    <!-- Navbar sticky para permanecer visible al hacer scroll -->
+    <header class="sticky top-0 z-[50] bg-white/90 backdrop-blur-sm border-b shadow-sm">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-6">
@@ -127,10 +127,16 @@
             </div>
             <div>
               <!-- Mockup o imagen -->
-              <div class="w-full h-64 rounded-lg overflow-hidden border">
-                <!-- Aquí irá el mapa en móvil/desktop -->
-                <div id="map" class="w-full h-full"></div>
-              </div>
+              <div class="w-full h-64 rounded-lg overflow-hidden border relative">
+                  <!-- Botón flotante de geolocalización -->
+                  <button id="locateBtn" title="¿Dónde estás?" class="locate-fab bg-accent text-primary inline-flex items-center gap-2 px-3 py-2 rounded-full shadow-lg hover:brightness-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3" stroke-linecap="round" stroke-linejoin="round" /><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="hidden sm:inline">¿Dónde estás?</span>
+                  </button>
+                  <div id="locStatus" class="absolute left-4 top-4 bg-white/80 text-sm text-slate-700 px-3 py-1 rounded-full shadow-sm hidden">Localizándote...</div>
+                  <!-- Aquí irá el mapa en móvil/desktop -->
+                  <div id="map" class="w-full h-full"></div>
+                </div>
             </div>
           </div>
         </div>

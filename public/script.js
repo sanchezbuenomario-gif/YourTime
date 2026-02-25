@@ -33,6 +33,8 @@ let currentLocal = null;
 let activeShop = null;
 let cart = [];
 let selectedSlot = null;
+let userLocationMarker = null;
+let userLocationCircle = null;
 
 // Generate sample products when a shop has none
 function generateProductsForLocal(local) {
@@ -60,6 +62,49 @@ function generateProductsForLocal(local) {
 function initMap() {
   map = L.map('map', { zoomControl: true }).setView([40.4168, -3.7038], 6);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+}
+
+// Añade marcador pulso indicando la ubicación del usuario
+function addUserLocationMarker(lat, lng) {
+  // eliminar anteriores
+  if (userLocationMarker) { try { map.removeLayer(userLocationMarker); } catch (e){} userLocationMarker = null; }
+  if (userLocationCircle) { try { map.removeLayer(userLocationCircle); } catch (e){} userLocationCircle = null; }
+
+  const html = `<div class="pulse-marker" aria-hidden="true"></div>`;
+  const icon = L.divIcon({ html, className: '', iconSize: [24,24], iconAnchor: [12,12] });
+  userLocationMarker = L.marker([lat, lng], { icon, zIndexOffset: 2000 }).addTo(map);
+  // círculo de precisión aproximada
+  userLocationCircle = L.circle([lat, lng], { radius: 40, color: '#002147', fillColor: '#002147', fillOpacity: 0.06, weight: 1 }).addTo(map);
+}
+
+function showLocStatus(text, visible = true) {
+  const el = document.getElementById('locStatus');
+  if (!el) return;
+  el.innerText = text;
+  el.classList.toggle('hidden', !visible);
+}
+
+function startGeolocation(focus = true) {
+  if (!navigator || !navigator.geolocation) {
+    showNotification('Tu navegador no soporta geolocalización');
+    return;
+  }
+  showLocStatus('Localizándote...', true);
+  navigator.geolocation.getCurrentPosition((pos) => {
+    const lat = pos.coords.latitude;
+    const lng = pos.coords.longitude;
+    addUserLocationMarker(lat, lng);
+    if (focus && map) map.setView([lat, lng], 15);
+    showLocStatus('Tu ubicación actual', true);
+    setTimeout(() => showLocStatus('', false), 2500);
+  }, (err) => {
+    if (err.code === err.PERMISSION_DENIED) {
+      showLocStatus('No podemos localizarte automáticamente, pero puedes buscar "Guadalajara" o tu ciudad manualmente', true);
+    } else {
+      showLocStatus('Error al intentar localizarte', true);
+    }
+    setTimeout(() => showLocStatus('', false), 5000);
+  }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
 }
 
 // Abrir modal con datos y catálogo
@@ -321,6 +366,32 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeLocalModal(); closeAuthModal(); } });
 
   updateUserUI();
+
+  // Botón y comportamiento de geolocalización
+  const locateBtn = document.getElementById('locateBtn');
+  if (locateBtn) {
+    locateBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      startGeolocation(true);
+    });
+  }
+
+  // Intentar iniciar geolocalización automáticamente tras cargar (pide permiso)
+  if (navigator.permissions) {
+    navigator.permissions.query({ name: 'geolocation' }).then((p) => {
+      if (p.state === 'granted') {
+        startGeolocation(true);
+      } else if (p.state === 'prompt') {
+        setTimeout(() => startGeolocation(false), 1200);
+      } else {
+        // denied
+        showLocStatus('No podemos localizarte automáticamente, pero puedes buscar "Guadalajara" o tu ciudad manualmente', true);
+        setTimeout(() => showLocStatus('', false), 5000);
+      }
+    }).catch(() => { setTimeout(() => startGeolocation(false), 1400); });
+  } else {
+    setTimeout(() => startGeolocation(false), 1400);
+  }
 });
 
 /* ------------------------- Chatbot assistant ------------------------- */
