@@ -60,40 +60,6 @@ function generateProductsForLocal(local) {
 function initMap() {
   map = L.map('map', { zoomControl: true }).setView([40.4168, -3.7038], 6);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
-
-  fetch('/api/locales')
-    .then(r => r.json())
-    .then(locales => {
-      const list = $('#listaLocales');
-      locales.forEach(local => {
-        const marker = L.marker([local.lat, local.lng]).addTo(map);
-        marker.on('click', () => showShopView(local));
-
-        // tarjeta en lista
-        const card = document.createElement('article');
-        card.className = 'border rounded p-4 bg-white flex flex-col gap-2';
-        card.innerHTML = `
-          <div class="flex items-center gap-3">
-            <img src="${local.imagen_portada}" alt="${local.nombre}" class="w-14 h-14 object-cover rounded" />
-            <div>
-              <h4 class="font-semibold text-primary">${local.nombre}</h4>
-              <p class="text-sm text-slate-600">${local.horario}</p>
-            </div>
-          </div>
-          <div class="mt-2 flex items-center justify-between">
-            <button class="bg-accent text-white px-3 py-1 rounded view-map" data-id="${local.id}">Ver en mapa</button>
-            <button class="text-sm text-slate-600" onclick="showShopView(${JSON.stringify(local).replace(/'/g, "\'")})">Ver Tienda</button>
-          </div>`;
-        list.appendChild(card);
-
-        // handler ver en mapa
-        card.querySelector('.view-map').addEventListener('click', () => {
-          map.setView([local.lat, local.lng], 14);
-          showShopView(local);
-        });
-      });
-    })
-    .catch(err => console.error('Error cargando locales', err));
 }
 
 // Abrir modal con datos y catálogo
