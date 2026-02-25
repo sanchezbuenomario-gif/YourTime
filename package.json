@@ -1,0 +1,13 @@
+{
+  "name": "yourtime",
+  "version": "0.1.0",
+  "description": "YourTime - Plataforma de reservas en comercios locales (prototipo)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

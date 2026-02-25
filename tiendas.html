@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tiendas — YourTime</title>
+    <meta name="description" content="Descubre tiendas locales en España con YourTime." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="public/styles.css" />
+  </head>
+  <body class="antialiased text-slate-800 bg-white">
+    <!-- Navbar -->
+    <header class="bg-white border-b sticky top-0 z-[5000]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center">
+            <img src="img/logopng.png" alt="YourTime" class="w-16 h-16 md:w-20 md:h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 object-contain rounded-md" />
+          </a>
+          <nav class="hidden md:flex items-center gap-6 text-sm">
+            <a href="index.html#mapa" class="text-slate-600 hover:text-primary">Mapa</a>
+            <a href="tiendas.html" class="font-semibold text-primary">Tiendas</a>
+            <a href="about.html" class="text-slate-600 hover:text-primary">Nosotros</a>
+          </nav>
+          <div class="flex items-center gap-3">
+            <div id="userStatus" class="text-sm text-slate-600 hidden md:block">No has iniciado sesión</div>
+            <button id="btnLogin" class="bg-transparent border border-primary text-primary px-4 py-1 rounded hover:bg-primary/5">Iniciar Sesión</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero pequeño -->
+      <section class="bg-gradient-to-b from-white to-slate-50 py-8">
+        <div class="max-w-7xl mx-auto px-4">
+          <h1 class="text-3xl font-bold text-primary">Tiendas locales cerca de ti</h1>
+          <p class="mt-2 text-slate-600">Busca y filtra comercios por ciudad o nombre</p>
+        </div>
+      </section>
+
+      <!-- Buscador y Filtros -->
+      <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <!-- Busqueda por nombre -->
+          <input 
+            id="searchInput" 
+            type="text" 
+            placeholder="Buscar tienda por nombre..." 
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Filtro por ciudad -->
+            <select 
+              id="cityFilter" 
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+            <option value="">Todas las ciudades</option>
+            <option value="Guadalajara">Guadalajara</option>
+            <option value="Madrid">Madrid</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="Valencia">Valencia</option>
+            <option value="Sevilla">Sevilla</option>
+            <option value="Bilbao">Bilbao</option>
+            <option value="Alicante">Alicante</option>
+            <option value="Granada">Granada</option>
+          </select>
+          
+            <!-- Filtro por categoría -->
+            <select id="categoryFilter" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+              <option value="">Todas las categorías</option>
+              <option value="Alimentación">Alimentación</option>
+              <option value="Salud">Salud</option>
+              <option value="Servicios">Servicios</option>
+              <option value="Ocio">Ocio</option>
+              <option value="Deportes">Deportes</option>
+              <option value="Tecnología">Tecnología</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid de tiendas -->
+        <div id="storesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Cards generadas desde JS -->
+        </div>
+
+        <!-- Mensaje "sin resultados" -->
+        <div id="noResults" class="hidden text-center py-12">
+          <p class="text-slate-600">No se encontraron tiendas que coincidan con tu búsqueda.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal de tienda (reutilizado) -->
+    <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[10000] p-4">
+      <div id="modalContent" class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b p-4 flex items-center justify-between">
+          <h2 id="modalTitle" class="text-2xl font-bold text-primary"></h2>
+          <button id="closeModal" class="text-slate-500 hover:text-slate-700">✕</button>
+        </div>
+
+        <div id="modalBody" class="p-6">
+          <!-- Banner -->
+          <div id="modalBanner" class="h-48 bg-cover bg-center rounded-lg mb-6"></div>
+
+          <!-- Contenido principal -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Información de tienda -->
+            <div>
+              <h3 class="font-semibold text-lg text-primary mb-4">Información</h3>
+              <p id="modalDescription" class="text-slate-600 mb-3"></p>
+              <p id="modalHorario" class="text-slate-600 mb-2"></p>
+              <p id="modalTelefono" class="text-slate-600 mb-4"></p>
+              <p id="modalStatus" class="text-green-600 font-semibold mb-4"></p>
+
+              <!-- Selector de franja horaria -->
+              <div class="mb-4">
+                <label class="block font-semibold mb-2">Selecciona una franja:</label>
+                <select id="timeSlotSelect" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                  <option value="">-- Elige una hora --</option>
+                </select>
+              </div>
+
+              <button id="confirmReserve" class="w-full bg-accent text-white px-4 py-2 rounded-lg font-semibold hover:brightness-95">
+                Confirmar Reserva
+              </button>
+            </div>
+
+            <!-- Catálogo de productos -->
+            <div>
+              <h3 class="font-semibold text-lg text-primary mb-4">Catálogo</h3>
+              <div id="catalog" class="grid grid-cols-2 gap-3 overflow-y-auto" style="max-height:300px;">
+                <!-- Productos insertados desde JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Auth -->
+    <div id="modalAuth" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[20000]">
+      <div class="bg-white rounded-lg shadow-2xl w-full max-w-md overflow-hidden">
+        <div class="flex border-b">
+          <button id="tabLogin" class="flex-1 py-3 text-center font-medium">Iniciar sesión</button>
+          <button id="tabRegister" class="flex-1 py-3 text-center text-slate-500">Crear cuenta</button>
+        </div>
+        <div id="authBody" class="p-6">
+          <form id="loginForm" class="space-y-3">
+            <input id="loginEmail" type="email" placeholder="Correo electrónico" class="w-full border px-3 py-2 rounded" required />
+            <input id="loginPassword" type="password" placeholder="Contraseña" class="w-full border px-3 py-2 rounded" required />
+            <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded">Entrar</button>
+          </form>
+          <form id="registerForm" class="space-y-3 hidden">
+            <input id="regName" type="text" placeholder="Nombre" class="w-full border px-3 py-2 rounded" required />
+            <input id="regEmail" type="email" placeholder="Correo electrónico" class="w-full border px-3 py-2 rounded" required />
+            <input id="regPassword" type="password" placeholder="Contraseña" class="w-full border px-3 py-2 rounded" required />
+            <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded">Crear cuenta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toasts -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-[25000] flex flex-col gap-3"></div>
+
+    <footer class="bg-black border-t">
+      <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between text-sm text-white">
+        <div>© 2026 YourTime</div>
+        <div class="flex items-center gap-4">
+          <a href="privacy.html" class="hover:underline">Política de Privacidad</a>
+          <a href="terms.html" class="hover:underline">Términos y Condiciones</a>
+          <a href="cookies.html" class="hover:underline">Cookies</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="public/tiendas.js"></script>
+  </body>
+</html>

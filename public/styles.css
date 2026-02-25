@@ -1,0 +1,109 @@
+/* styles.css - Estilos adicionales y animaciones mejorados */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Altura mínima para el mapa en móviles */
+#map { height: 16rem; }
+@media (min-width: 768px) { #map { height: 20rem; } }
+
+/* Asegurar que Leaflet no interfiera con modales (z-index bajo) */
+.leaflet-container { z-index: 0 !important; }
+.leaflet-pane { z-index: 0 !important; }
+
+/* Paleta de marca */
+:root {
+  --yt-primary: #002147; /* azul oscuro */
+  --yt-accent: #FBB03B; /* naranja/amarillo */
+}
+
+.bg-primary { background-color: var(--yt-primary); }
+.text-primary { color: var(--yt-primary); }
+.bg-accent { background-color: var(--yt-accent); }
+
+/* Toasts modernos con animación suave */
+.toast {
+  opacity: 0;
+  transform: translateY(-10px);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(2,17,46,0.3);
+  transition: opacity .25s ease, transform .25s ease;
+  will-change: transform, opacity;
+}
+.toast.opacity-100 { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+/* Chatbot styles */
+.chat-fab { background-color: var(--yt-accent); transition: transform .15s ease, box-shadow .15s ease; }
+.chat-fab:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
+
+.chat-panel { width: 22rem; background: transparent; animation: chatEnter .28s ease both; }
+
+.chat-header { background-color: var(--yt-primary); }
+.chat-messages { background: linear-gradient(180deg,#ffffff,#f7f8fb); }
+
+.msg { max-width: 78%; padding: .5rem .75rem; border-radius: .75rem; margin-bottom: .5rem; display: inline-block; word-wrap: break-word; }
+.msg-user { background: #fde7c9; color: #1f2937; border-bottom-right-radius: .25rem; }
+.msg-bot { background: #eef2ff; color: #0f172a; border-bottom-left-radius: .25rem; }
+
+.msg-row { display:flex; gap:.5rem; align-items:flex-end; }
+.msg-row.user { justify-content:flex-end; }
+.msg-row.bot { justify-content:flex-start; }
+
+.typing { font-style: italic; color: #6b7280; }
+
+@keyframes chatEnter { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity:1; transform: translateY(0) scale(1); } }
+
+/* Smooth fade/slide for panel show/hide (used via JS classes if needed) */
+.fade-in-up { animation: chatEnter .25s ease both; }
+
+/* Loader (simple spinner) */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #e6e6e6;
+  border-top-color: var(--yt-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Shop view styles */
+#shopView { background: #fff; }
+#shopHeader { background-size: cover; background-position: center; }
+#productsGrid .card { border-radius: .5rem; overflow: hidden; box-shadow: 0 6px 18px rgba(2,17,46,0.06); }
+.add-btn { background: var(--yt-accent); color: white; padding: .5rem .75rem; border-radius: .5rem; font-weight:600; }
+.confirm-btn { background: var(--yt-accent); color: white; padding: .75rem 1rem; border-radius: .5rem; font-weight:700; }
+
+/* Sidebar cart */
+#reserveSidebar { min-width: 260px; }
+#cartItems .cart-item { display:flex; gap:8px; align-items:center; }
+#cartItems .cart-item img { width:52px; height:52px; object-fit:cover; border-radius:6px; }
+
+/* Ensure shop view overlays map */
+.leaflet-container { z-index: 0 !important; }
+
+/* Carousel styles */
+.carousel-track { position: relative; }
+.carousel-slide { transition: opacity .6s ease, transform .6s ease; }
+.carousel-slide.hidden { opacity: 0; transform: translateY(6px); }
+.carousel-slide:not(.hidden) { opacity: 1; transform: translateY(0); }
+.carousel-dot { transition: background-color .2s ease; }
+
+/* Auth modal full screen adjustments */
+#modalAuth.fullscreen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 20000; }
+#modalAuth .auth-content { width: 100%; height: 100%; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#fff,#f6f7fb);} 
+#modalAuth .auth-box { max-width:420px; width:90%; padding:32px; background:white; border-radius:12px; box-shadow:0 10px 40px rgba(2,17,46,0.12); text-align:center; }
+
+
+/* Smooth navigation */
+html { scroll-behavior: smooth; }
+
+/* Ensure chat sits above map tiles */
+.chat-fab { z-index: 10000; }
+.chat-panel { z-index: 10000; }
+
+
