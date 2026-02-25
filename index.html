@@ -346,128 +346,176 @@
       </div>
     </div>
 
-    <!-- Modal: Formulario de Registro de Comercios -->
-    <div id="modalComercio" class="fixed inset-0 bg-black/60 hidden z-[10000] flex items-center justify-center" aria-hidden="true">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-4 overflow-hidden">
-        <!-- Header del Modal -->
-        <div class="bg-gradient-to-r from-primary to-blue-900 px-6 py-8 text-white relative">
-          <button id="closeModalComercio" class="absolute right-4 top-4 text-white hover:bg-white/20 rounded-full p-2 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <!-- Modal: Formulario de Registro de Comercios (Compacto) -->
+    <div id="modalComercio" class="fixed inset-0 bg-black/50 hidden z-[10000] flex items-center justify-center p-4" aria-hidden="true">
+      <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <!-- Header compacto -->
+        <div class="sticky top-0 bg-white border-b border-primary/20 px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <img src="./img/logopng.png" alt="YourTime" class="w-8 h-8 object-contain" />
+            <h2 class="text-lg font-bold text-primary">Únete como Comercio</h2>
+          </div>
+          <button id="closeModalComercio" class="text-slate-500 hover:text-primary transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <h2 class="text-3xl font-bold">Únete como Comercio</h2>
-          <p class="mt-2 text-blue-100">Digitaliza tus citas y llega a más clientes</p>
         </div>
 
-        <!-- Contenido del formulario -->
-        <form id="formularioComercio" class="px-6 py-8 space-y-5">
-          <!-- Nombre del Negocio -->
-          <div>
-            <label class="block text-sm font-semibold text-primary mb-2">Nombre del Negocio</label>
-            <input 
-              id="nombreNegocio" 
-              type="text" 
-              placeholder="Ej: La Panadería Alcarreña" 
-              class="w-full border-2 border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition"
-              required
-            />
+        <!-- Contenido en dos columnas (responsive) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+          <!-- Columna izquierda: Beneficios -->
+          <div class="hidden md:flex flex-col justify-center space-y-4">
+            <p class="text-sm text-slate-600 font-medium">¿Por qué unirse?</p>
+            
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-primary">Visibilidad</h4>
+                <p class="text-xs text-slate-600">Llega a nuevos clientes</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-primary">Gestión Simple</h4>
+                <p class="text-xs text-slate-600">Control total desde un panel</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-primary">Sin Colas</h4>
+                <p class="text-xs text-slate-600">Mejora la experiencia del cliente</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Ciudad -->
-          <div>
-            <label class="block text-sm font-semibold text-primary mb-2">Ciudad</label>
-            <select 
-              id="ciudadNegocio" 
-              class="w-full border-2 border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition"
-              required
-            >
-              <option value="">Selecciona tu ciudad</option>
-              <option value="Guadalajara">Guadalajara</option>
-              <option value="Madrid">Madrid</option>
-              <option value="Barcelona">Barcelona</option>
-              <option value="Valencia">Valencia</option>
-              <option value="Sevilla">Sevilla</option>
-              <option value="Bilbao">Bilbao</option>
-              <option value="Otras">Otras ciudades</option>
-            </select>
-          </div>
+          <!-- Columna derecha: Formulario -->
+          <form id="formularioComercio" class="space-y-4">
+            <!-- Grid 2 columnas: Nombre y Ciudad -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-primary mb-1.5">Nombre del Negocio</label>
+                <input 
+                  id="nombreNegocio" 
+                  type="text" 
+                  placeholder="Ej: La Panadería" 
+                  class="w-full border border-primary/30 px-3 py-2 rounded text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/50 transition"
+                  required
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-primary mb-1.5">Ciudad</label>
+                <select 
+                  id="ciudadNegocio" 
+                  class="w-full border border-primary/30 px-3 py-2 rounded text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/50 transition"
+                  required
+                >
+                  <option value="">Selecciona ciudad</option>
+                  <option value="Guadalajara">Guadalajara</option>
+                  <option value="Madrid">Madrid</option>
+                  <option value="Barcelona">Barcelona</option>
+                  <option value="Valencia">Valencia</option>
+                  <option value="Sevilla">Sevilla</option>
+                  <option value="Bilbao">Bilbao</option>
+                  <option value="Otras">Otras ciudades</option>
+                </select>
+              </div>
+            </div>
 
-          <!-- Tipo de Comercio -->
-          <div>
-            <label class="block text-sm font-semibold text-primary mb-2">Tipo de Comercio</label>
-            <select 
-              id="tipoComercio" 
-              class="w-full border-2 border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition"
-              required
-            >
-              <option value="">Selecciona el tipo</option>
-              <option value="Alimentación">Alimentación</option>
-              <option value="Salud">Salud</option>
-              <option value="Ocio">Ocio y Deportes</option>
-              <option value="Tecnología">Tecnología</option>
-              <option value="Belleza">Belleza y Bienestar</option>
-              <option value="Otros">Otros Servicios</option>
-            </select>
-          </div>
+            <!-- Email y Teléfono -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-primary mb-1.5">Email</label>
+                <input 
+                  id="emailComercio" 
+                  type="email" 
+                  placeholder="contacto@negocio.com" 
+                  class="w-full border border-primary/30 px-3 py-2 rounded text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/50 transition"
+                  required
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-primary mb-1.5">Teléfono</label>
+                <input 
+                  id="telefonoComercio" 
+                  type="tel" 
+                  placeholder="+34 600 000 000" 
+                  class="w-full border border-primary/30 px-3 py-2 rounded text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/50 transition"
+                  required
+                />
+              </div>
+            </div>
 
-          <!-- Teléfono de Contacto -->
-          <div>
-            <label class="block text-sm font-semibold text-primary mb-2">Teléfono de Contacto</label>
-            <input 
-              id="telefonoComercio" 
-              type="tel" 
-              placeholder="+34 600 000 000" 
-              class="w-full border-2 border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition"
-              required
-            />
-          </div>
+            <!-- Tipo de Comercio (ancho completo) -->
+            <div>
+              <label class="block text-xs font-semibold text-primary mb-1.5">Tipo de Comercio</label>
+              <select 
+                id="tipoComercio" 
+                class="w-full border border-primary/30 px-3 py-2 rounded text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/50 transition"
+                required
+              >
+                <option value="">Selecciona tipo</option>
+                <option value="Alimentación">Alimentación</option>
+                <option value="Salud">Salud</option>
+                <option value="Ocio">Ocio y Deportes</option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Belleza">Belleza y Bienestar</option>
+                <option value="Otros">Otros Servicios</option>
+              </select>
+            </div>
 
-          <!-- Email -->
-          <div>
-            <label class="block text-sm font-semibold text-primary mb-2">Email</label>
-            <input 
-              id="emailComercio" 
-              type="email" 
-              placeholder="contacto@negocio.com" 
-              class="w-full border-2 border-slate-300 px-4 py-3 rounded-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition"
-              required
-            />
-          </div>
+            <!-- Botones de acción -->
+            <div class="flex gap-2 pt-2">
+              <button 
+                type="button" 
+                id="btnCancelarFormulario"
+                class="flex-1 border border-primary/30 text-primary px-3 py-2 rounded text-sm font-medium hover:bg-slate-50 transition"
+              >
+                Cancelar
+              </button>
+              <button 
+                type="submit" 
+                class="flex-1 bg-accent text-primary px-3 py-2 rounded text-sm font-semibold hover:brightness-90 transition shadow-md"
+              >
+                Enviar
+              </button>
+            </div>
 
-          <!-- Botones de acción -->
-          <div class="flex gap-3 pt-4">
-            <button 
-              type="button" 
-              id="btnCancelarFormulario"
-              class="flex-1 border-2 border-slate-300 text-primary px-4 py-3 rounded-lg font-semibold hover:bg-slate-50 transition"
-            >
-              Cancelar
-            </button>
-            <button 
-              type="submit" 
-              class="flex-1 bg-accent text-primary px-4 py-3 rounded-lg font-semibold hover:brightness-90 transition shadow-lg"
-            >
-              Enviar Solicitud
-            </button>
-          </div>
-        </form>
+            <p class="text-xs text-slate-500 text-center mt-2">Sin compromiso. Validaremos tu local en 24 horas.</p>
+          </form>
+        </div>
       </div>
     </div>
 
-    <!-- Modal: Mensaje de Éxito de Comercios -->
-    <div id="modalExitoComercio" class="fixed inset-0 bg-black/60 hidden z-[10001] flex items-center justify-center" aria-hidden="true">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8 text-center">
-        <div class="mx-auto w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+    <!-- Modal: Mensaje de Éxito de Comercios (Compacto) -->
+    <div id="modalExitoComercio" class="fixed inset-0 bg-black/50 hidden z-[10001] flex items-center justify-center p-4" aria-hidden="true">
+      <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center">
+        <div class="mx-auto w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="currentColor">
             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-primary mb-3">¡Gracias por tu interés!</h3>
-        <p class="text-slate-600 mb-6">Un asesor de YourTime se pondrá en contacto contigo para validar tu local.</p>
+        <h3 class="text-lg font-bold text-primary mb-2">¡Gracias por tu interés!</h3>
+        <p class="text-sm text-slate-600 mb-4">Un asesor de YourTime se pondrá en contacto contigo para validar tu local.</p>
         <button 
           id="btnCerrarExito"
-          class="w-full bg-accent text-primary px-4 py-3 rounded-lg font-semibold hover:brightness-90 transition"
+          class="w-full bg-accent text-primary px-4 py-2 rounded text-sm font-semibold hover:brightness-90 transition"
         >
           Cerrar
         </button>
