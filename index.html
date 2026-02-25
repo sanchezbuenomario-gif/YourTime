@@ -54,39 +54,61 @@
       </div>
     </header>
 
-    <!-- Carousel (full width) -->
-    <div id="heroCarousel" class="w-full h-80 overflow-hidden relative transition-all duration-500">
+    <!-- Hero Tagline: Your Time is Gold -->
+    <div class="tagline-section w-full bg-gradient-to-r from-primary to-blue-900 py-8 sm:py-12 lg:py-16">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <!-- Icono de reloj/tiempo dorado -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="tagline-icon w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-accent" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">YourTime is Gold</h1>
+        <p class="mt-3 sm:mt-4 lg:mt-6 text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto">
+          Reserva negocios locales sin esfuerzo y guarda tus momentos preciosos
+        </p>
+      </div>
+    </div>
+
+    <!-- Carousel (full width, edge to edge) - 100% Responsivo -->
+    <div id="heroCarousel" class="w-full h-[250px] md:h-[400px] lg:h-[550px] overflow-hidden relative transition-all duration-500">
       <div class="carousel-track w-full h-full relative">
-        <div class="carousel-slide absolute inset-0 bg-cover bg-center" style="background-image:url(./img/bizcocho.jpg)">
-          <div class="w-full h-full bg-black/30 flex items-end">
-            <div class="p-6 text-white">
-              <h2 class="text-2xl font-bold">La Bizcocheria</h2>
-              <p class="mt-1">Pide ahora y llevate 2 barras de pan.</p>
-            </div>
+        <!-- Slide 1: La Bizcocheria -->
+        <div class="carousel-slide absolute inset-0 hidden" style="background-image:url(./img/bizcocho.jpg)">
+          <img src="./img/bizcocho.jpg" alt="La Bizcocheria" class="absolute inset-0 w-full h-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 lg:p-12 text-white z-10">
+            <h2 class="text-xl sm:text-3xl lg:text-5xl font-bold max-w-2xl">La Bizcocheria</h2>
+            <p class="mt-2 sm:mt-3 lg:mt-4 text-sm sm:text-base lg:text-lg max-w-2xl">Pide ahora y llevate 2 barras de pan.</p>
           </div>
         </div>
-        <div class="carousel-slide absolute inset-0 bg-cover bg-center hidden" style="background-image:url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1400&q=80')">
-          <div class="w-full h-full bg-black/30 flex items-end">
-            <div class="p-6 text-white">
-              <h2 class="text-2xl font-bold">Apoya al comercio de Guadalajara</h2>
-              <p class="mt-1">Compra local, vive local.</p>
-            </div>
+
+        <!-- Slide 2: Apoya al comercio -->
+        <div class="carousel-slide absolute inset-0 hidden" style="background-image:url(./img/publicidad.jpg)">
+          <img src="./img/publicidad.jpg" alt="Apoya al comercio de Guadalajara" class="absolute inset-0 w-full h-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 lg:p-12 text-white z-10">
+            <h2 class="text-xl sm:text-3xl lg:text-5xl font-bold max-w-2xl">Apoya al comercio de Guadalajara</h2>
+            <p class="mt-2 sm:mt-3 lg:mt-4 text-sm sm:text-base lg:text-lg max-w-2xl">Compra local, vive local.</p>
           </div>
         </div>
-        <div class="carousel-slide absolute inset-0 bg-cover bg-center hidden" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80')">
-          <div class="w-full h-full bg-black/30 flex items-end">
-            <div class="p-6 text-white">
-              <h2 class="text-2xl font-bold">Reserva en un clic</h2>
-              <p class="mt-1">Gestiona tu tiempo con facilidad.</p>
-            </div>
+
+        <!-- Slide 3: Reserva en un clic -->
+        <div class="carousel-slide absolute inset-0 hidden" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80')">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80" alt="Reserva en un clic" class="absolute inset-0 w-full h-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 lg:p-12 text-white z-10">
+            <h2 class="text-xl sm:text-3xl lg:text-5xl font-bold max-w-2xl">Reserva en un clic</h2>
+            <p class="mt-2 sm:mt-3 lg:mt-4 text-sm sm:text-base lg:text-lg max-w-2xl">Gestiona tu tiempo con facilidad.</p>
           </div>
         </div>
       </div>
-      <!-- indicators -->
-      <div class="absolute left-1/2 -translate-x-1/2 bottom-4 flex gap-2">
-        <button class="carousel-dot w-3 h-3 rounded-full bg-white/60" data-index="0"></button>
-        <button class="carousel-dot w-3 h-3 rounded-full bg-white/40" data-index="1"></button>
-        <button class="carousel-dot w-3 h-3 rounded-full bg-white/40" data-index="2"></button>
+
+      <!-- Navigation Dots - Aumentados para táctil -->
+      <div class="absolute left-1/2 -translate-x-1/2 bottom-6 lg:bottom-8 flex gap-3 z-20">
+        <button class="carousel-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-white/60 hover:bg-white transition-all" data-index="0" aria-label="Slide 1"></button>
+        <button class="carousel-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-white/40 hover:bg-white transition-all" data-index="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-white/40 hover:bg-white transition-all" data-index="2" aria-label="Slide 3"></button>
       </div>
     </div>
 
