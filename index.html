@@ -31,7 +31,7 @@
   </head>
   <body class="antialiased text-slate-800 bg-white">
     <!-- Navbar sticky para permanecer visible al hacer scroll -->
-    <header class="sticky top-0 z-[50] bg-white/90 backdrop-blur-sm border-b shadow-sm">
+    <header class="sticky top-0 z-[50] bg-white/90 backdrop-blur-md border-b shadow-sm">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-6">
@@ -54,21 +54,41 @@
       </div>
     </header>
 
-    <!-- Hero Tagline: Your Time is Gold -->
-    <div class="tagline-section w-full bg-gradient-to-r from-primary to-blue-900 py-8 sm:py-12 lg:py-16">
+    <!-- Hero Section: YourTime is gold - Premium Design -->
+    <section class="w-full bg-[#002147] py-24 sm:py-28 lg:py-36">
       <div class="max-w-6xl mx-auto px-4 text-center">
-        <div class="flex items-center justify-center gap-3 mb-4">
-          <!-- Icono de reloj/tiempo dorado -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="tagline-icon w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-accent" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+        <!-- Icono dorado con efecto metálico -->
+        <div class="flex items-center justify-center mb-8 sm:mb-10 lg:mb-12">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-14 h-14 sm:w-18 sm:h-18 lg:w-24 lg:h-24 transition-transform duration-300 hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.35)); animation: gentle-float 4s ease-in-out infinite;">
+            <path d="M6 9V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2m-8 0v10m0-10h6v10m-6 0H4m12 0h6M9 5H8a2 2 0 0 0-2 2v2h12V7a2 2 0 0 0-2-2h-1"/>
           </svg>
         </div>
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">YourTime is Gold</h1>
-        <p class="mt-3 sm:mt-4 lg:mt-6 text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto">
-          Reserva negocios locales sin esfuerzo y guarda tus momentos preciosos
+        
+        <!-- Título principal con efecto dorado -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-wider mb-4 sm:mb-6 leading-tight" style="letter-spacing: 0.12em; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+          YourTime
+          <br />
+          <span class="inline-block bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-400 bg-clip-text text-transparent">is gold</span>
+        </h1>
+        
+        <!-- Subtítulo elegante -->
+        <p class="mt-6 sm:mt-8 text-sm sm:text-base lg:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed font-light" style="letter-spacing: 0.02em;">
+          Aprovecha tu día con YourTime
         </p>
+        
+        <!-- Línea decorativa dorada -->
+        <div class="mt-10 sm:mt-12 lg:mt-14 flex justify-center">
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent rounded-full"></div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <style>
+      @keyframes gentle-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+    </style>
 
     <!-- Carousel (full width, edge to edge) - 100% Responsivo -->
     <div id="heroCarousel" class="w-full h-[250px] md:h-[400px] lg:h-[550px] overflow-hidden relative transition-all duration-500">
@@ -76,39 +96,24 @@
         <!-- Slide 1: La Bizcocheria -->
         <div class="carousel-slide absolute inset-0 hidden" style="background-image:url(./img/bizcocho.jpg)">
           <img src="./img/bizcocho.jpg" alt="La Bizcocheria" class="absolute inset-0 w-full h-full object-cover object-center" />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 lg:p-12 text-white z-10">
-            <h2 class="text-xl sm:text-3xl lg:text-5xl font-bold max-w-2xl">La Bizcocheria</h2>
-            <p class="mt-2 sm:mt-3 lg:mt-4 text-sm sm:text-base lg:text-lg max-w-2xl">Pide ahora y llevate 2 barras de pan.</p>
-          </div>
         </div>
 
         <!-- Slide 2: Apoya al comercio -->
         <div class="carousel-slide absolute inset-0 hidden" style="background-image:url(./img/publicidad.jpg)">
           <img src="./img/publicidad.jpg" alt="Apoya al comercio de Guadalajara" class="absolute inset-0 w-full h-full object-cover object-center" />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 lg:p-12 text-white z-10">
-            <h2 class="text-xl sm:text-3xl lg:text-5xl font-bold max-w-2xl">Apoya al comercio de Guadalajara</h2>
-            <p class="mt-2 sm:mt-3 lg:mt-4 text-sm sm:text-base lg:text-lg max-w-2xl">Compra local, vive local.</p>
-          </div>
         </div>
 
         <!-- Slide 3: Reserva en un clic -->
         <div class="carousel-slide absolute inset-0 hidden" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80')">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80" alt="Reserva en un clic" class="absolute inset-0 w-full h-full object-cover object-center" />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-8 lg:p-12 text-white z-10">
-            <h2 class="text-xl sm:text-3xl lg:text-5xl font-bold max-w-2xl">Reserva en un clic</h2>
-            <p class="mt-2 sm:mt-3 lg:mt-4 text-sm sm:text-base lg:text-lg max-w-2xl">Gestiona tu tiempo con facilidad.</p>
-          </div>
         </div>
       </div>
 
-      <!-- Navigation Dots - Aumentados para táctil -->
+      <!-- Navigation Dots - Indicadores del carrusel -->
       <div class="absolute left-1/2 -translate-x-1/2 bottom-6 lg:bottom-8 flex gap-3 z-20">
-        <button class="carousel-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-white/60 hover:bg-white transition-all" data-index="0" aria-label="Slide 1"></button>
-        <button class="carousel-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-white/40 hover:bg-white transition-all" data-index="1" aria-label="Slide 2"></button>
-        <button class="carousel-dot w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-white/40 hover:bg-white transition-all" data-index="2" aria-label="Slide 3"></button>
+        <button class="carousel-dot w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-accent transition-all duration-300 shadow-md hover:brightness-110" data-index="0" aria-label="Slide 1"></button>
+        <button class="carousel-dot w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-gray-400/40 transition-all duration-300 shadow-md hover:bg-gray-400/60" data-index="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot w-3 h-3 lg:w-4 lg:h-4 rounded-full bg-gray-400/40 transition-all duration-300 shadow-md hover:bg-gray-400/60" data-index="2" aria-label="Slide 3"></button>
       </div>
     </div>
 
@@ -143,59 +148,19 @@
       </section>
       
       <!-- Sección de Locales Destacados (3 cards) -->
-      <section id="tiendas" class="max-w-6xl mx-auto px-4 py-12">
+      <section id="tiendas" class="max-w-6xl mx-auto px-4 py-12 mt-16">
         <h2 class="text-2xl font-semibold text-primary">Locales Destacados</h2>
         <p class="mt-2 text-slate-600">Pulsa un pin en el mapa o consulta disponibilidad directamente desde estas tarjetas.</p>
 
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card 1 -->
-          <article class="bg-white rounded-lg shadow-md overflow-hidden">
-            <img src="./img/Captura de pantalla 2026-02-24 160829.png" alt="La Bizcochería" class="w-full h-48 object-cover" />
-            <div class="p-4">
-              <div class="text-xs text-white bg-accent inline-block px-2 py-1 rounded mb-2">Gastronomía</div>
-              <h3 class="font-semibold text-lg text-primary">La Bizcochería</h3>
-              <div class="mt-2 flex items-center gap-2 text-sm text-slate-600">
-                <div class="flex items-center text-yellow-400">★★★★★</div>
-                <div class="text-slate-500">4.8 (125)</div>
-              </div>
-              <div class="mt-4">
-                <a href="tiendas.html" class="inline-flex items-center gap-2 bg-accent text-white px-4 py-2 rounded shadow hover:brightness-95">Ver Disponibilidad</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="bg-white rounded-lg shadow-md overflow-hidden">
-            <img src="./img/calderon.png" alt="Calderon" class="w-full h-48 object-cover" />
-            <div class="p-4">
-              <div class="text-xs text-white bg-accent inline-block px-2 py-1 rounded mb-2">Deportes</div>
-              <h3 class="font-semibold text-lg text-primary">Calderon Sport</h3>
-              <div class="mt-2 flex items-center gap-2 text-sm text-slate-600">
-                <div class="flex items-center text-yellow-400">★★★★☆</div>
-                <div class="text-slate-500">4.5 (98)</div>
-              </div>
-              <div class="mt-4">
-                <a href="tiendas.html" class="inline-flex items-center gap-2 bg-accent text-white px-4 py-2 rounded shadow hover:brightness-95">Ver Disponibilidad</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="bg-white rounded-lg shadow-md overflow-hidden">
-            <img src="./img/vitaldent.png" alt="Clínica Dental Vitaldent" class="w-full h-48 object-cover" />
-            <div class="p-4">
-              <div class="text-xs text-white bg-accent inline-block px-2 py-1 rounded mb-2">Salud</div>
-              <h3 class="font-semibold text-lg text-primary">Clínica Dental Vitaldent</h3>
-              <div class="mt-2 flex items-center gap-2 text-sm text-slate-600">
-                <div class="flex items-center text-yellow-400">★★★★☆</div>
-                <div class="text-slate-500">4.6 (76)</div>
-              </div>
-              <div class="mt-4">
-                <a href="tiendas.html" class="inline-flex items-center gap-2 bg-accent text-white px-4 py-2 rounded shadow hover:brightness-95">Ver Disponibilidad</a>
-              </div>
-            </div>
-          </article>
+        <div id="featuredShops" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Cards will be generated by script.js -->
         </div>
+        <!-- call JS to populate featured shops -->
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            if (typeof renderFeaturedShops === 'function') renderFeaturedShops();
+          });
+        </script>
 
         <!-- Lista dinámica generada por JS (si aplica) -->
         <div class="mt-8" id="listaLocales"></div>
@@ -264,6 +229,7 @@
           <a href="privacy.html" class="hover:underline">Política de Privacidad</a>
           <a href="terms.html" class="hover:underline">Términos y Condiciones</a>
           <a href="cookies.html" class="hover:underline">Cookies</a>
+          <a href="aviso-legal.html" class="hover:underline">Aviso Legal</a>
         </div>
       </div>
     </footer>

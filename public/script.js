@@ -9,6 +9,102 @@
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
 
+// featured shops demo data (estructura ampliada tal como solicitaste)
+const featuredShops = [
+  {
+    nombre: 'La Bizcochería',
+    descripcion_corta: 'Pan de masa madre, bizcochos artesanos y dulces típicos alcarreños.',
+    direccion: 'C. Alvarfáñez de Minaya, 4, 19001 Guadalajara.',
+    rango_precio: '€',
+    horario_hoy: '08:00 - 14:30 | 17:00 - 20:00',
+    abierto: true,
+    precioMedio: 'Desde 0,50€',
+    imagen: './img/Captura de pantalla 2026-02-24 160829.png',
+    categoria: 'Gastronomía',
+    rating: 4.8,
+    reviews: 125
+  },
+  {
+    nombre: 'Calderon Sport',
+    descripcion_corta: 'Material deportivo y asesoramiento experto en el corazón de Madrid.',
+    direccion: 'Plaza Mayor, 12, 28012 Madrid.',
+    rango_precio: '€€',
+    horario_hoy: '10:00 - 14:00 | 16:00 - 20:00',
+    abierto: false,
+    precioMedio: 'Desde 15€',
+    imagen: './img/calderon.png',
+    categoria: 'Deportes',
+    rating: 4.5,
+    reviews: 98
+  },
+  {
+    nombre: 'Clínica Dental Vitaldent',
+    descripcion_corta: 'Atención dental moderna y cercana con servicio personalizados.',
+    direccion: 'Av. de la Constitución, 8, 19005 Guadalajara.',
+    rango_precio: '€€€',
+    horario_hoy: '09:00 - 13:30 | 15:30 - 19:00',
+    abierto: true,
+    precioMedio: 'Desde 30€',
+    imagen: './img/vitaldent.png',
+    categoria: 'Salud',
+    rating: 4.6,
+    reviews: 76
+  }
+];
+
+// render featured shops/cards dynamically - Clean & Professional Design
+function renderFeaturedShops() {
+  const container = document.getElementById('featuredShops');
+  if (!container) return;
+  container.innerHTML = '';
+  featuredShops.forEach(shop => {
+    const card = document.createElement('div');
+    card.className = 'relative group overflow-hidden rounded-lg shadow-lg border-2 border-yellow-400 bg-white h-80';
+    card.innerHTML = `
+      <!-- Imagen -->
+      <img src="${shop.imagen}" alt="${shop.nombre}" class="w-full h-3/4 object-cover transition-transform duration-300 group-hover:brightness-60" />
+      
+      <!-- Overlay informativo (aparece en hover) -->
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex flex-col justify-center items-center p-4 text-white text-center opacity-0 group-hover:opacity-100">
+        <p class="text-xs italic text-yellow-300 mb-3">Your Time is Gold</p>
+        <p class="text-sm leading-tight mb-3 max-h-12 overflow-hidden">${shop.descripcion_corta}</p>
+        <div class="flex items-center gap-2 text-xs mb-2 justify-center">
+          <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-4 h-4 flex-shrink-0\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M17.657 16.657L13.414 12.414a4 4 0 10-5.657-5.657l-4.243 4.243a8 8 0 1011.314 11.314z\"/>
+          </svg>
+          <span class=\"text-xs leading-tight\">${shop.direccion}</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs mb-2 justify-center">
+          <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-4 h-4 flex-shrink-0\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z\"/>
+          </svg>
+          <span class=\"text-xs\">${shop.horario_hoy}</span>
+        </div>
+        <p class=\"text-xs mb-1\">${shop.abierto ? '<span class=\"text-green-300\">● Abierto</span>' : '<span class=\"text-red-300\">● Cerrado</span>'}</p>
+        <p class=\"text-xs font-semibold\">${shop.rango_precio}</p>
+      </div>
+      
+      <!-- Sección inferior siempre visible -->
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white/98 to-white/90 backdrop-blur-sm p-4 flex items-center justify-between z-10 h-1/4">
+        <div class="flex-1">
+          <h3 class="text-lg font-bold text-primary truncate">${shop.nombre}</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-4 h-4 text-yellow-500\" fill=\"currentColor\" viewBox=\"0 0 20 20\">
+              <path d=\"M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.955a1 1 0 00.95.69h4.153c.969 0 1.371 1.24.588 1.81l-3.36 2.44a1 1 0 00-.364 1.118l1.286 3.955c.3.921-.755 1.688-1.54 1.118l-3.36-2.44a1 1 0 00-1.176 0l-3.36 2.44c-.784.57-1.838-.197-1.539-1.118l1.286-3.955a1 1 0 00-.364-1.118L2.98 9.382c-.783-.57-.38-1.81.588-1.81h4.152a1 1 0 00.951-.69l1.286-3.955z\"/>
+            </svg>
+            <span class=\"text-xs text-slate-600\">${shop.rating}</span>
+          </div>
+        </div>
+        <a href=\"tiendas.html\" class=\"inline-flex items-center gap-1 bg-accent text-white px-3 py-2 rounded font-semibold text-sm hover:brightness-95 transition-all duration-200 group-hover:scale-105\">Ver</a>
+      </div>
+      
+      <!-- Badge de precio -->
+      <div class="absolute top-3 right-3 bg-accent text-white text-xs px-2.5 py-1 rounded-full shadow-lg font-semibold">${shop.precioMedio}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
 // Mostrar notificación tipo toast (con animación Tailwind)
 function showNotification(message) {
   const container = $('#toastContainer');
@@ -526,14 +622,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 300);
   });
   
-  // Carousel initialization
+  // Carousel initialization with clean dot states
   (function initCarousel(){
     const slides = Array.from(document.querySelectorAll('#heroCarousel .carousel-slide'));
     const dots = Array.from(document.querySelectorAll('#heroCarousel .carousel-dot'));
     let current = 0;
     function show(i){
       slides.forEach((s,idx)=>{ if(idx===i){ s.classList.remove('hidden'); } else { s.classList.add('hidden'); } });
-      dots.forEach((d,idx)=> d.classList.toggle('bg-white/60', idx===i));
+      dots.forEach((d,idx)=> {
+        if(idx === i) {
+          // Estado activo: naranja fuerte
+          d.classList.add('bg-accent');
+          d.classList.remove('bg-gray-400/40');
+        } else {
+          // Estado inactivo: gris suave
+          d.classList.remove('bg-accent');
+          d.classList.add('bg-gray-400/40');
+        }
+      });
       current = i;
     }
     dots.forEach(d=> d.addEventListener('click', (e)=> show(Number(e.currentTarget.dataset.index))));
